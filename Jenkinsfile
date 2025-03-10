@@ -4,20 +4,28 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                build 'PES2UG22CS292-1'
-                sh 'g++ main.cpp -o output'
+                script {
+                    echo "Building the application..."
+                    sh "make -C main clean && make -C main hello_exec"
+                }
             }
         }
 
         stage('Test') {
             steps {
-                sh './output'
+                script {
+                    echo "Running tests..."
+                    sh "./main/hello_exec"
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo ' deploy'
+                script {
+                    echo "Deploying application..."
+                    sh 'echo "Deployment successful!"'
+                }
             }
         }
     }
