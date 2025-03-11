@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo "Building the application..."
-                    sh "make -C main clean && make -C main hello_exec"
+                    sh 'g++ -o PES2UG22CS292 hello.cpp
                 }
             }
         }
@@ -14,8 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    echo "Running tests..."
-                    sh "./main/hello_exec"
+                    sh "./PES2UG22CS292"
                 }
             }
         }
@@ -24,7 +22,6 @@ pipeline {
             steps {
                 script {
                     echo "Deploying application..."
-                    sh 'echo "Deployment successful!"'
                 }
             }
         }
